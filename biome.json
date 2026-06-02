@@ -6,7 +6,8 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false
+		"ignoreUnknown": false,
+		"includes": ["**", "!backend/dist", "!frontend/dist", "!node_modules"]
 	},
 	"formatter": {
 		"enabled": true,

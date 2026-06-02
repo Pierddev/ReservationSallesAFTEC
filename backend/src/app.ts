@@ -1,21 +1,29 @@
-import express from "express"
 import cors from "cors";
-import { env } from "./config/env.js"
+import express from "express";
+import { env } from "./config/env.js";
+import { AppDataSource } from "./database/data-source.js";
 import routes from "./routes/index.js";
 
-const app = express()
-const port = env.port
+const app = express();
+const port = env.port;
 
 app.use(
 	cors({
 		origin: env.urlSite,
 		credentials: true,
-	})
-)
+	}),
+);
 
-app.use("/", routes)
+app.use("/", routes);
 
 // BDD connexion and server start
-app.listen(port, () => {
-    console.log(`Serveur démarré sur http://localhost:${port}`);
-});
+AppDataSource.initialize()
+	.then(() => {
+		console.log("Connexion à la BDD réussie");
+		app.listen(port, () => {
+			console.log(`Serveur démarré sur http://localhost:${port}`);
+		});
+	})
+	.catch((error) => {
+		console.error("Erreur lors de la connexion à la BDD :", error);
+	});
