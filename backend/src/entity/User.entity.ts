@@ -7,6 +7,8 @@ import {
 } from "typeorm";
 import { Role } from "./Role.entity.js";
 
+export const HashSalt = 10;
+
 @Entity({ name: "User" })
 export class User {
 	@PrimaryGeneratedColumn({ type: "bigint" })

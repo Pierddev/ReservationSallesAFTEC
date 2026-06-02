@@ -9,4 +9,4 @@ export const createUserSchema = z.object({
 		.min(10, "Le mot de passe doit faire au moins 10 caractères"),
 });
 
-export type CreateUserDto = z.infer<typeof createUserSchema>;
+export type createUserDto = z.infer<typeof createUserSchema>;
