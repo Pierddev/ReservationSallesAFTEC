@@ -1,8 +1,8 @@
-import type { Request, Response } from "express"
+import type { Request, Response } from "express";
 
 // Controller for non-authenticated users
 export class IndexController {
-    home(req: Request, res: Response) {
-        res.send('Reservation Salles API')
-    }
+	home(_req: Request, res: Response) {
+		res.send("Reservation Salles API");
+	}
 }
