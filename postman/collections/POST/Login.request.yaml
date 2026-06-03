@@ -1,5 +1,14 @@
 $kind: http-request
-name: Login
 url: http://localhost:3000/login
 method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"Daphne.Mathieu@gmail.com\",\r
+
+    \    \"password\": \"Password123!\"\r
+
+    }"
+examples: .resources/Login.resources/examples
 order: 1199710243128763
