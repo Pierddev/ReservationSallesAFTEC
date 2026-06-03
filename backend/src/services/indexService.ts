@@ -7,7 +7,7 @@ import type { loginUserDto } from "../dtos/loginUser.dto.js";
 import { Role } from "../entity/Role.entity.js";
 import { HashSalt, User } from "../entity/User.entity.js";
 
-export class IndexService {
+export class UserService {
 	async register(dto: createUserDto) {
 		const userRepository = AppDataSource.getRepository(User);
 		const roleRepository = AppDataSource.getRepository(Role);
@@ -48,14 +48,16 @@ export class IndexService {
 			relations: { role: true },
 		});
 
+		// For security reason we do not distinguish between user not found and invalid password
 		if (!user) {
-			throw new Error("User not found");
+			throw new Error("Incorrect password or email address.");
 		}
 
 		// Compare password
 		const isPasswordValid = await bcrypt.compare(dto.password, user.password);
 		if (!isPasswordValid) {
-			throw new Error("Invalid password");
+			// For security reason we do not distinguish between user not found and invalid password
+			throw new Error("Incorrect password or email address.");
 		}
 
 		// Generate token

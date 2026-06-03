@@ -1,10 +1,8 @@
 import { z } from "zod";
 
 export const loginUserSchema = z.object({
-	email: z.email("L'email doit être valide"),
-	password: z
-		.string()
-		.min(10, "Le mot de passe doit faire au moins 10 caractères"),
+	email: z.email("Email is not valid"),
+	password: z.string().min(10, "Password must be at least 10 characters"),
 });
 
 export type loginUserDto = z.infer<typeof loginUserSchema>;
