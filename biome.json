@@ -7,7 +7,13 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**", "!backend/dist", "!frontend/dist", "!node_modules"]
+		"includes": [
+			"**",
+			"!backend/dist",
+			"!frontend/dist",
+			"!node_modules",
+			"!coverage"
+		]
 	},
 	"formatter": {
 		"enabled": true,
