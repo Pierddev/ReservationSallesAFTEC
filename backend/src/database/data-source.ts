@@ -1,13 +1,14 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { env } from "../config/env.js";
 
 export const AppDataSource = new DataSource({
 	type: "mariadb",
-	host: "localhost",
-	port: 3306,
-	username: "reservation_salles_app",
-	password: "admin1234",
-	database: "reservation_salles_aftec",
+	host: `${env.dbHost}`,
+	port: Number(env.dbPort),
+	username: `${env.dbUser}`,
+	password: `${env.dbPassword}`,
+	database: `${env.dbName}`,
 	entities: ["src/entity/*.ts"],
 	migrations: ["src/migrations/*.ts"],
 	synchronize: false,
