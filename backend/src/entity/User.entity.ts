@@ -9,7 +9,7 @@ import { Role } from "./Role.entity.js";
 
 export const HashSalt = 10;
 
-@Entity({ name: "User" })
+@Entity({ name: "user" })
 export class User {
 	@PrimaryGeneratedColumn({ type: "bigint" })
 	id!: number;

@@ -11,7 +11,7 @@ import { Classroom } from "./Classroom.entity.js";
 import { User } from "./User.entity.js";
 
 @Check("end_at > start_at")
-@Entity({ name: "Booking" })
+@Entity({ name: "booking" })
 export class Booking {
 	@PrimaryGeneratedColumn({ type: "bigint" })
 	id!: number;

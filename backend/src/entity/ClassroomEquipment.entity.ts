@@ -10,7 +10,7 @@ import { Classroom } from "./Classroom.entity.js";
 import { Equipment } from "./Equipment.entity.js";
 
 @Check("end_at > start_at")
-@Entity({ name: "Classroom_Equipment" })
+@Entity({ name: "classroom_equipment" })
 export class ClassroomEquipment {
 	@PrimaryGeneratedColumn({ type: "bigint" })
 	id!: number;
