@@ -8,6 +8,8 @@
 		"ts-jest": "^29.4.11"
 	},
 	"scripts": {
-		"install:all": "npm install && npm install --prefix backend && npm install --prefix frontend"
+		"install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+		"test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
 	}
 }
