@@ -7,6 +7,8 @@ const indexController = new IndexController();
 
 // Base routes
 router.get("/", indexController.home);
+router.post("/login", indexController.login);
+router.post("/register", indexController.register);
 
 // Test route
 router.post("/", (_req: Request, res: Response) => {
