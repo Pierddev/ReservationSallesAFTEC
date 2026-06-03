@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { User } from "./User.entity.js";
 
-@Entity({ name: "Log" })
+@Entity({ name: "log" })
 export class Log {
 	@PrimaryGeneratedColumn({ type: "bigint" })
 	id!: number;

@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { Building } from "./Building.entity.js";
 
-@Entity({ name: "Floor" })
+@Entity({ name: "floor" })
 export class Floor {
 	@PrimaryGeneratedColumn({ type: "bigint" })
 	id!: number;

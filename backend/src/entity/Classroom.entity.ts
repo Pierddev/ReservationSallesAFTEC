@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { Floor } from "./Floor.entity.js";
 
-@Entity({ name: "Classroom" })
+@Entity({ name: "classroom" })
 export class Classroom {
 	@PrimaryGeneratedColumn({ type: "bigint" })
 	id!: number;
@@ -18,9 +18,6 @@ export class Classroom {
 
 	@Column({ type: "int" })
 	capacity!: number;
-
-	@Column({ type: "boolean" })
-	has_removable_walls!: boolean;
 
 	@ManyToOne(() => Classroom, { nullable: true })
 	@JoinColumn({ name: "parent_classroom_id" })
