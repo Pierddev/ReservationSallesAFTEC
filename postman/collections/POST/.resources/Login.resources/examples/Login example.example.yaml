@@ -1,0 +1,20 @@
+$kind: http-example
+request:
+  url: http://localhost:3000/login
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \    \"email\": \"Daphne.Mathieu@gmail.com\",\r
+
+      \    \"password\": \"Password123!\"\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: json
+    content: ""
+order: 1780492423574
