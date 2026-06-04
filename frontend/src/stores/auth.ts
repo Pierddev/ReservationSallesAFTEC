@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import api from "../services/api";
+import api from "../services/apiService";
 
 // Define User interface to match the backend User entity
 export interface User {
@@ -22,9 +22,21 @@ export const useAuthStore = defineStore("auth", () => {
 	const isAuthenticated = ref(false);
 
 	// Actions
+	async function register(data: {
+		firstname: string;
+		lastname: string;
+		email: string;
+		password: string;
+	}) {
+		// POST on /register with user data
+		// Axios automatically send JSON data to backend thanks to the api.ts file and the header {"Content-Type": "application/json"}
+		const response = await api.post("/register", data);
+		// { message: "User created successfully" }
+		return response.data;
+	}
+
 	async function login(email: string, password: string) {
 		// POST on /login with email and password
-		// Axios automatically send JSON data to backend thanks to the api.ts file and the header {"Content-Type": "application/json"}
 		const response = await api.post("/login", { email, password });
 
 		// If we reached here, it means login was successful (we received a response from the backend, status 200
@@ -45,5 +57,5 @@ export const useAuthStore = defineStore("auth", () => {
 	}
 
 	// Return what is needed to other components
-	return { user, isAuthenticated, login, logout };
+	return { user, isAuthenticated, register, login, logout };
 });

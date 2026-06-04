@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 import aftecLogo from "@/assets/logo/aftec_logo.svg";
 import { useAuthStore } from "../stores/auth.js";
 
 // get the auth store
 const authStore = useAuthStore();
+
+// get the current route (to handle redirection after login if needed)
+const route = useRoute();
+const successMessage =
+	route.query.registered === "1"
+		? "Inscription réussie ! Veuillez vous connecter."
+		: "";
 
 // reactive variables for the form
 const email = ref("");
@@ -19,12 +27,12 @@ async function handleSubmit() {
 
 	// Validate that email and password are provided
 	if (!email.value || !password.value) {
-		errorMessage.value = "All the fields are required";
+		errorMessage.value = "Tous les champs sont requis";
 		return;
 	}
 
 	if (password.value.length < 10) {
-		errorMessage.value = "Password must be at least 10 characters";
+		errorMessage.value = "Le mot de passe doit contenir au moins 10 caractères";
 		return;
 	}
 
@@ -46,14 +54,17 @@ async function handleSubmit() {
 
 <template>
     <div class="h-screen flex justify-center items-center">
-        <form class="flex flex-col h-fit min-w-96 gap-4 justify-center items-center bg-gray-100/50 p-10 rounded-3xl border-2 border-gray-100 shadow-md" @submit.prevent="handleSubmit">
+        <form class="flex flex-col h-fit min-w-120 gap-4 justify-center items-center bg-gray-100/50 p-10 rounded-3xl border-2 border-gray-100 shadow-md" @submit.prevent="handleSubmit">
             <div class="bg-white p-5 rounded-full">
                 <img :src="aftecLogo" class="w-12 h-12" alt="Logo" />
             </div>
             <h1 class="font-heading font-bold text-2xl">Connexion</h1>
-            <!-- Message d'erreur -->
+            <!-- Error message -->
             <p class="bg-red-500/20 p-2 rounded-xl border-2 border-red-500/40 text-red-500 text-sm font-medium" v-if="errorMessage">{{ errorMessage }}</p>
-            <!-- Champ email -->
+            <!-- Success message -->
+            <p class="bg-green-600/10 p-2 rounded-xl border-2 border-green-600/40 text-green-600 text-sm font-medium" v-if="successMessage">{{ successMessage }}</p>
+
+            <!-- Email field -->
             <div class="field w-full">
                 <label for="email">Email</label>
                 <input
@@ -65,7 +76,7 @@ async function handleSubmit() {
                 />
             </div>
 
-            <!-- Champ password -->
+            <!-- password field -->
             <div class="field w-full">
                 <label for="password">Mot de passe</label>
                 <input
@@ -77,14 +88,14 @@ async function handleSubmit() {
                 />
             </div>
 
-            <!-- Bouton submit -->
+            <!-- Submit button -->
             <button class="btn-login" type="submit" :disabled="isLoading">
             {{ isLoading ? "Connexion..." : "Se connecter" }}
             </button>
 
             <!-- Signup link -->
             <p class="text-sm text-center opacity-70">
-                Pas encore inscrit ? <a class="text-aftec-blue hover:underline cursor-pointer" href="#">Inscrivez-vous</a>
+                Pas encore inscrit ? <RouterLink to="/register" class="text-aftec-blue hover:underline cursor-pointer">Inscrivez-vous</RouterLink>
             </p>
         </form>
     </div>
