@@ -1,0 +1,10 @@
+# Critical branch protection
+# PRs to master and require owner approval
+
+* @Pierddev
+
+# Stricter protection for master
+master @Pierddev
+
+# Protection for develop
+develop @Pierddev
