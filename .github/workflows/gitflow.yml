@@ -1,0 +1,59 @@
+name: GitFlow Convention Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, edited]
+
+jobs:
+  validate-branch-conventions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch naming conventions
+        id: check_branch
+        run: |
+          HEAD_BRANCH="${{ github.head_ref }}"
+          BASE_BRANCH="${{ github.base_ref }}"
+
+          echo "Source: $HEAD_BRANCH → Target: $BASE_BRANCH"
+
+          # GitFlow rules
+
+          # feature/* → develop only
+          if [[ "$HEAD_BRANCH" =~ ^feature/ ]]; then
+            if [[ "$BASE_BRANCH" != "develop" ]]; then
+              echo "::error::feature/* branches must target 'develop', not '$BASE_BRANCH'"
+              exit 1
+            fi
+            echo "✅ feature/* → develop"
+
+          # release/* → master
+          elif [[ "$HEAD_BRANCH" =~ ^release/ ]]; then
+            if [[ "$BASE_BRANCH" != "master" ]]; then
+              echo "::error::release/* branches must target 'master', not '$BASE_BRANCH'"
+              exit 1
+            fi
+            echo "✅ release/* → master"
+
+          # hotfix/* → master
+          elif [[ "$HEAD_BRANCH" =~ ^hotfix/ ]]; then
+            if [[ "$BASE_BRANCH" != "master" ]]; then
+              echo "::error::hotfix/* branches must target 'master', not '$BASE_BRANCH'"
+              exit 1
+            fi
+            echo "✅ hotfix/* → master"
+
+          # develop → master (release PR)
+          elif [[ "$HEAD_BRANCH" == "develop" ]]; then
+            if [[ "$BASE_BRANCH" != "master" ]]; then
+              echo "::error::develop can only target 'master', not '$BASE_BRANCH'"
+              exit 1
+            fi
+            echo "✅ develop → master"
+          fi
+
+      - name: Block direct pushes to master/develop (via PR)
+        run: |
+          BASE="${{ github.base_ref }}"
+          if [[ "$BASE" == "master" || "$BASE" == "develop" ]]; then
+            echo "⚠️  PR to $BASE detected — a review is required"
+          fi
