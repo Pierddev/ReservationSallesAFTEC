@@ -12,7 +12,7 @@ export interface User {
 }
 
 // Define Auth store with state and actions
-export const userAuthStore = defineStore("auth", () => {
+export const useAuthStore = defineStore("auth", () => {
 	// State
 	// User is null when not logged in
 	const user = ref<User | null>(null);
