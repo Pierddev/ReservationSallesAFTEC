@@ -8,6 +8,11 @@ const routes = [
 		// Lazy-loading : load only when the route is called => more efficient, don't load all at once
 		component: () => import("../views/LoginPage.vue"),
 	},
+	{
+		path: "/register",
+		name: "Register",
+		component: () => import("../views/RegisterPage.vue"),
+	},
 ];
 
 // createRouter : create a router instance
