@@ -3,9 +3,14 @@
 @theme {
 	--font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 	--font-heading: "Lexend", ui-sans-serif, system-ui, sans-serif;
+
+	/* Colors */
 	--color-aftec-blue: #0076b6;
 	--color-aftec-blue-light: #97bfe3;
 	--color-aftec-blue-dark: #023576;
+	--color-card: #f3f4f6;
+	--color-error: #fb2c36;
+	--color-success: #00a63e;
 
 	/* Couleurs des orbes d'arrière-plan */
 	--color-orb-1: #0076b6;
@@ -173,4 +178,16 @@
 		right: 20%;
 		@apply opacity-25 animate-orb-d;
 	}
+}
+
+@utility card-layout {
+	@apply bg-card/40 backdrop-blur-md p-10 rounded-3xl border-2 border-card/20 shadow-md;
+}
+
+@utility card-error {
+	@apply bg-error/20 p-2 rounded-xl border-2 border-error/40 text-error;
+}
+
+@utility card-success {
+	@apply bg-success/20 p-2 rounded-xl border-2 border-success/40 text-success;
 }
