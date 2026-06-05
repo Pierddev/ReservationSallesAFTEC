@@ -62,13 +62,13 @@ async function handleSubmit() {
 
 <template>
     <div class="h-screen flex justify-center items-center">
-        <form class="flex flex-col h-fit min-w-120 gap-4 justify-center items-center bg-gray-100/50 p-10 rounded-3xl border-2 border-gray-100 shadow-md" @submit.prevent="handleSubmit">
+        <form class="flex flex-col h-fit min-w-120 gap-4 justify-center items-center card-layout" @submit.prevent="handleSubmit">
             <div class="bg-white p-5 rounded-full">
                 <img :src="aftecLogo" class="w-12 h-12" alt="Logo" />
             </div>
             <h1 class="font-heading font-bold text-2xl">Inscription</h1>
             <!-- Error message -->
-            <p class="bg-red-500/20 p-2 rounded-xl border-2 border-red-500/40 text-red-500 text-sm font-medium" v-if="errorMessage">{{ errorMessage }}</p>
+            <p class="card-error text-sm font-medium" v-if="errorMessage">{{ errorMessage }}</p>
             <!-- Firstname field -->
             <div class="field w-full">
                 <label for="firstname">Prénom</label>
