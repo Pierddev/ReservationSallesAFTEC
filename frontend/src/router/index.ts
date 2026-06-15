@@ -1,8 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { useAuthStore } from "../stores/auth";
+import { useAuthStore } from "@/stores/auth";
 
 // Define routes config
 const routes = [
+	{
+		path: "/",
+		redirect: "/dashboard",
+	},
 	{
 		path: "/login",
 		name: "Login",
@@ -17,7 +21,7 @@ const routes = [
 	{
 		path: "/dashboard",
 		name: "Dashboard",
-		component: () => import("../views/Dashboard/AdminDashboard.vue"),
+		component: () => import("../views/Dashboard/Dashboard.vue"),
 	},
 ];
 

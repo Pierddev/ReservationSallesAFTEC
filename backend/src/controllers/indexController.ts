@@ -36,6 +36,7 @@ export class IndexController {
 					lastname: newUser.lastname,
 					email: newUser.email,
 					role: newUser.role.id,
+					roleName: newUser.role.name,
 				},
 			});
 		} catch (error) {
@@ -75,6 +76,7 @@ export class IndexController {
 					lastname: user.lastname,
 					email: user.email,
 					role: user.role.id,
+					roleName: user.role.name,
 				},
 			});
 		} catch (error) {

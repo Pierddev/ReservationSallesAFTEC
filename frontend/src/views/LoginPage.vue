@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import aftecLogo from "@/assets/logo/aftec_logo.svg";
-import { useAuthStore } from "../stores/auth.js";
+import { useAuthStore } from "@/stores/auth";
 
 // get the auth store
 const authStore = useAuthStore();
