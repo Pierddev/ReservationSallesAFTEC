@@ -48,6 +48,21 @@ export const useAuthStore = defineStore("auth", () => {
 		isAuthenticated.value = true;
 	}
 
+	// fetchUser: restores the user session from the HttpOnly cookie
+	// Called by the route guard when reloading a protected page
+	// If the JWT is valid, the user and their role are restored to the store
+	// If the JWT is invalid/expired, the store stays unauthenticated
+	async function fetchUser() {
+		try {
+			const response = await api.get("/me");
+			user.value = response.data.user;
+			isAuthenticated.value = true;
+		} catch {
+			user.value = null;
+			isAuthenticated.value = false;
+		}
+	}
+
 	// Logout action: clear user data and auth status
 	async function logout() {
 		try {
@@ -64,5 +79,5 @@ export const useAuthStore = defineStore("auth", () => {
 	}
 
 	// Return what is needed to other components
-	return { user, isAuthenticated, register, login, logout };
+	return { user, isAuthenticated, register, login, logout, fetchUser };
 });
