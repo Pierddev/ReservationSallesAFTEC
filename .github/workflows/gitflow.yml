@@ -26,13 +26,13 @@ jobs:
             fi
             echo "✅ feature/* → develop"
 
-          # release/* → master
+          # release/* → master (or develop after master merge)
           elif [[ "$HEAD_BRANCH" =~ ^release/ ]]; then
-            if [[ "$BASE_BRANCH" != "master" ]]; then
-              echo "::error::release/* branches must target 'master', not '$BASE_BRANCH'"
+            if [[ "$BASE_BRANCH" != "master" && "$BASE_BRANCH" != "develop" ]]; then
+              echo "::error::release/* branches must target 'master' or 'develop', not '$BASE_BRANCH'"
               exit 1
             fi
-            echo "✅ release/* → master"
+            echo "✅ release/* → $BASE_BRANCH"
 
           # hotfix/* → master
           elif [[ "$HEAD_BRANCH" =~ ^hotfix/ ]]; then
