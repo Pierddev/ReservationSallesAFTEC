@@ -81,4 +81,14 @@ export class IndexController {
 			return res.status(401).json({ message: (error as Error).message });
 		}
 	}
+
+	logout(_req: Request, res: Response) {
+		// Clear token cookie (same options as login)
+		res.clearCookie("token", {
+			httpOnly: true,
+			sameSite: "lax",
+			secure: false, // true in production / HTTPS
+		});
+		return res.status(200).json({ message: "User logged out successfully" });
+	}
 }
