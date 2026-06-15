@@ -4,5 +4,16 @@ url: http://localhost:3000/register
 method: POST
 body:
   type: json
-  content: ""
+  content: "{\r
+
+    \    \"firstname\": \"Pierre\",\r
+
+    \    \"lastname\": \"TEST\",\r
+
+    \    \"email\": \"test@mail.com\",\r
+
+    \    \"password\": \"Password123!\"\r
+
+    }"
+examples: .resources/Register.resources/examples
 order: 1203

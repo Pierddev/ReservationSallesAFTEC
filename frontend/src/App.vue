@@ -2,5 +2,13 @@
 </script>
 
 <template>
-  <HelloWorld />
+	<section>
+		<div class="liquid-bg">
+			<div class="orb"></div>
+			<div class="orb"></div>
+			<div class="orb"></div>
+			<div class="orb"></div>
+		</div>
+		<RouterView :key="$route.fullPath"/>
+	</section>
 </template>

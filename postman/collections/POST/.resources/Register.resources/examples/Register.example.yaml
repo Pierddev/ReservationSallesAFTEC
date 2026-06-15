@@ -1,12 +1,16 @@
 $kind: http-example
 request:
-  url: http://localhost:3000/apilogin
+  url: http://localhost:3000/api/register
   method: POST
   body:
     type: json
     content: "{\r
 
-      \    \"email\": \"Daphne.Mathieu@gmail.com\",\r
+      \    \"firstname\": \"Pierre\",\r
+
+      \    \"lastname\": \"TEST\",\r
+
+      \    \"email\": \"test@mail.com\",\r
 
       \    \"password\": \"Password123!\"\r
 
@@ -17,4 +21,4 @@ response:
   body:
     type: json
     content: ""
-order: 1780492423574
+order: 1780563208553

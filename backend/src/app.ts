@@ -3,7 +3,12 @@ import cors from "cors";
 import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
-import routes from "./routes/index.js";
+import routesAPI from "./routes/index.js";
+
+// Protected routes requiring a valid JWT token
+// Import the router for user profile routes (GET /me)
+import profileRoutes from "./routes/profile.js";
+import { setupSwagger } from "./swagger/swagger.js";
 
 const app = express();
 const port = env.port;
@@ -17,7 +22,15 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
-app.use("/", routes);
+
+// Swagger
+setupSwagger(app);
+
+app.use("/api", routesAPI);
+
+// Mount protected routes (JWT authentication required)
+// GET /api/me restores the user session on the frontend after a page refresh
+app.use("/api", profileRoutes);
 
 // BDD connexion and server start
 AppDataSource.initialize()

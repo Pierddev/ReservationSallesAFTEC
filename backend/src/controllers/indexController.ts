@@ -36,6 +36,7 @@ export class IndexController {
 					lastname: newUser.lastname,
 					email: newUser.email,
 					role: newUser.role.id,
+					roleName: newUser.role.name,
 				},
 			});
 		} catch (error) {
@@ -75,10 +76,21 @@ export class IndexController {
 					lastname: user.lastname,
 					email: user.email,
 					role: user.role.id,
+					roleName: user.role.name,
 				},
 			});
 		} catch (error) {
 			return res.status(401).json({ message: (error as Error).message });
 		}
+	}
+
+	logout(_req: Request, res: Response) {
+		// Clear token cookie (same options as login)
+		res.clearCookie("token", {
+			httpOnly: true,
+			sameSite: "lax",
+			secure: false, // true in production / HTTPS
+		});
+		return res.status(200).json({ message: "User logged out successfully" });
 	}
 }

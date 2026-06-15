@@ -1,0 +1,83 @@
+import { defineStore } from "pinia";
+import { ref } from "vue";
+import api from "../services/apiService";
+
+// Define User interface to match the backend User entity
+export interface User {
+	id: number;
+	firstname: string;
+	lastname: string;
+	email: string;
+	role: number;
+	roleName: string;
+}
+
+// Define Auth store with state and actions
+export const useAuthStore = defineStore("auth", () => {
+	// State
+	// User is null when not logged in
+	const user = ref<User | null>(null);
+
+	// Computed properties
+	// True if user is logged in, false otherwise
+	const isAuthenticated = ref(false);
+
+	// Actions
+	async function register(data: {
+		firstname: string;
+		lastname: string;
+		email: string;
+		password: string;
+	}) {
+		// POST on /register with user data
+		// Axios automatically send JSON data to backend thanks to the api.ts file and the header {"Content-Type": "application/json"}
+		const response = await api.post("/register", data);
+		// { message: "User created successfully" }
+		return response.data;
+	}
+
+	async function login(email: string, password: string) {
+		// POST on /login with email and password
+		const response = await api.post("/login", { email, password });
+
+		// If we reached here, it means login was successful (we received a response from the backend, status 200
+		// Backend also set the token in the httpOnly cookie thanks to the res.cookie() function in indexController.ts
+		// Save User in the state
+		// response.data = { message: "User...", user: { id, firstname, ...}}
+		user.value = response.data.user;
+		isAuthenticated.value = true;
+	}
+
+	// fetchUser: restores the user session from the HttpOnly cookie
+	// Called by the route guard when reloading a protected page
+	// If the JWT is valid, the user and their role are restored to the store
+	// If the JWT is invalid/expired, the store stays unauthenticated
+	async function fetchUser() {
+		try {
+			const response = await api.get("/me");
+			user.value = response.data.user;
+			isAuthenticated.value = true;
+		} catch {
+			user.value = null;
+			isAuthenticated.value = false;
+		}
+	}
+
+	// Logout action: clear user data and auth status
+	async function logout() {
+		try {
+			await api.post("/logout");
+		} catch (error) {
+			console.error("Logout failed:", error);
+		} finally {
+			user.value = null;
+			isAuthenticated.value = false;
+		}
+
+		// JWT token is not deleted backend side here
+		// We need to make a request to the backend to delete the token (ex: POST /logout)
+	}
+
+	// Return what is needed to other components
+	return { user, isAuthenticated, register, login, logout, fetchUser };
+});

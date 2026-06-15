@@ -10,3 +10,6 @@ dist/
 
 # Coverage files
 **/coverage/
+
+.opencode
+backend/src/openapi.json
