@@ -9,6 +9,7 @@ const indexController = new IndexController();
 router.get("/", indexController.home);
 router.post("/login", indexController.login);
 router.post("/register", indexController.register);
+router.post("/logout", indexController.logout);
 
 // Test route
 router.post("/", (_req: Request, res: Response) => {
