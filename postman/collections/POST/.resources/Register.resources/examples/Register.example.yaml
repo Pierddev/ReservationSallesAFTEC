@@ -1,6 +1,6 @@
 $kind: http-example
 request:
-  url: http://localhost:3000/register
+  url: http://localhost:3000/api/register
   method: POST
   body:
     type: json
