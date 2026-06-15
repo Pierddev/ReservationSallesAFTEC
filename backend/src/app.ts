@@ -3,7 +3,7 @@ import cors from "cors";
 import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
-import routes from "./routes/index.js";
+import routesAPI from "./routes/index.js";
 import { setupSwagger } from "./swagger/swagger.js";
 
 const app = express();
@@ -22,7 +22,7 @@ app.use(express.json());
 // Swagger
 setupSwagger(app);
 
-app.use("/", routes);
+app.use("/api", routesAPI);
 
 // BDD connexion and server start
 AppDataSource.initialize()
