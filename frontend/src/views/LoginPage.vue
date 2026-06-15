@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import aftecLogo from "@/assets/logo/aftec_logo.svg";
 import { useAuthStore } from "../stores/auth.js";
 
@@ -9,6 +9,7 @@ const authStore = useAuthStore();
 
 // get the current route (to handle redirection after login if needed)
 const route = useRoute();
+const router = useRouter();
 const successMessage =
 	route.query.registered === "1"
 		? "Inscription réussie ! Veuillez vous connecter."
@@ -19,6 +20,10 @@ const email = ref("");
 const password = ref("");
 const errorMessage = ref("");
 const isLoading = ref(false);
+
+if (route.query.error === "unauthorized") {
+	errorMessage.value = "Vous devez être connecté pour accéder à cette page.";
+}
 
 // Async function to handle login form submission
 async function handleSubmit() {
@@ -41,7 +46,7 @@ async function handleSubmit() {
 	try {
 		await authStore.login(email.value, password.value);
 		// For now we log, then we will redirect to the dashboard
-		console.log("Connected!!!"); // !!! To remove in production !!!
+		router.push("/dashboard");
 	} catch (error) {
 		// Type assertion: The error is expected to be an object with a message property
 		errorMessage.value = (error as { message: string }).message;

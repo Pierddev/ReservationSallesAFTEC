@@ -50,7 +50,6 @@ async function handleSubmit() {
 			email: email.value,
 			password: password.value,
 		});
-		console.log("Registered!!!"); // !!! To remove in production !!!
 		router.push("/login?registered=1");
 	} catch (error) {
 		errorMessage.value = (error as { message: string }).message;

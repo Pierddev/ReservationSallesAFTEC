@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "../stores/auth";
 
 // Define routes config
 const routes = [
@@ -13,6 +14,11 @@ const routes = [
 		name: "Register",
 		component: () => import("../views/RegisterPage.vue"),
 	},
+	{
+		path: "/dashboard",
+		name: "Dashboard",
+		component: () => import("../views/Dashboard/AdminDashboard.vue"),
+	},
 ];
 
 // createRouter : create a router instance
@@ -20,6 +26,21 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(),
 	routes,
+});
+
+router.beforeEach((to) => {
+	// Get the auth store
+	const authStore = useAuthStore();
+
+	// Define public pages that don't need authentication
+	const publicPages = ["Login", "Register"];
+
+	if (!publicPages.includes(to.name as string) && !authStore.isAuthenticated) {
+		console.log("You must be logged in to access this page");
+		return { name: "Login", query: { error: "unauthorized" } };
+	}
+
+	return true;
 });
 
 export default router;
