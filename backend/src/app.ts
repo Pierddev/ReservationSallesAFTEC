@@ -4,6 +4,7 @@ import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
 import routes from "./routes/index.js";
+import { setupSwagger } from "./swagger/swagger.js";
 
 const app = express();
 const port = env.port;
@@ -17,6 +18,10 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+// Swagger
+setupSwagger(app);
+
 app.use("/", routes);
 
 // BDD connexion and server start

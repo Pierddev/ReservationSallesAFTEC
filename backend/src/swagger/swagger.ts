@@ -1,0 +1,79 @@
+// src/swagger.ts
+
+import * as fs from "node:fs";
+import * as path from "node:path";
+import type { Express, Request, Response } from "express";
+import redoc from "redoc-express";
+import swaggerJsdoc from "swagger-jsdoc";
+
+const projectRoot = process.cwd();
+
+// Configuration de Swagger
+const options: swaggerJsdoc.Options = {
+	definition: {
+		openapi: "3.0.0",
+		info: {
+			title: "API - Réservation de salle",
+			version: "1.0.0",
+			description: "Réservation de salle AFTEC",
+		},
+		servers: [
+			{ url: "http://localhost:3000", description: "Serveur de développement" },
+		],
+		components: {
+			securitySchemes: {
+				bearerAuth: {
+					type: "http",
+					scheme: "bearer",
+					bearerFormat: "JWT",
+				},
+			},
+		},
+	},
+	apis: [
+		path.resolve(projectRoot, "src/routes/*.ts"),
+		path.resolve(projectRoot, "src/entity/*.ts"),
+	],
+};
+
+const specs = swaggerJsdoc(options);
+
+// Écrit le fichier openapi.json
+fs.writeFileSync(
+	path.resolve(projectRoot, "src/openapi.json"),
+	JSON.stringify(specs, null, 2),
+);
+
+export const setupSwagger = (app: Express) => {
+	// Route pour Redoc
+	// Utilisation de redoc-express avec transtypage pour contourner les limitations nodenext
+	const redocMiddleware = redoc as unknown as (
+		options: Record<string, unknown>,
+	) => (req: Request, res: Response) => void;
+	app.get(
+		"/docs",
+		redocMiddleware({
+			title: "API Docs - Redoc",
+			specUrl: "/openapi.json",
+			redocOptions: {
+				theme: {
+					colors: {
+						primary: {
+							main: "#1976d2",
+						},
+					},
+					typography: {
+						fontSize: "15px",
+						fontFamily: '"Inter", sans-serif',
+					},
+				},
+			},
+		}),
+	);
+
+	// Servir le fichier openapi.json
+	app.get("/openapi.json", (_req: Request, res: Response) => {
+		res.setHeader("Content-Type", "application/json");
+		res.send(specs);
+	});
+};
