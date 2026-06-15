@@ -47,7 +47,7 @@ router.beforeEach(async (to) => {
 	if (!publicPages.includes(to.name as string) && !authStore.isAuthenticated) {
 		// Phase 2: session restoration — fetchUser calls GET /api/me protected by JWT
 		// If the cookie is valid, the backend returns user info and isAuthenticated becomes true
-		await authStore.fetchUser()
+		await authStore.fetchUser();
 		// After attempting restoration, if still not authenticated → redirect to login
 		if (!authStore.isAuthenticated) {
 			return { name: "Login", query: { error: "unauthorized" } };

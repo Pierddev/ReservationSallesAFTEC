@@ -11,7 +11,12 @@ export class ProfileController {
 	async me(req: AuthRequest, res: Response) {
 		try {
 			const profileService = new ProfileService();
-			const user = await profileService.getProfile(req.userId!);
+
+			if (!req.userId) {
+				return res.status(401).json({ message: "Unauthorized" });
+			}
+
+			const user = await profileService.getProfile(req.userId);
 
 			return res.status(200).json({
 				user: {
