@@ -9,6 +9,6 @@
 			<div class="orb"></div>
 			<div class="orb"></div>
 		</div>
-		<RouterView />
+		<RouterView :key="$route.fullPath"/>
 	</section>
 </template>

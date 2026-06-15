@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import eyeClosedIcon from "@/assets/icon/eye-closed.svg";
 import eyeOpenIcon from "@/assets/icon/eye-opened.svg";
 import aftecLogo from "@/assets/logo/aftec_logo.svg";
-import { useAuthStore } from "../stores/auth.js";
+import { useAuthStore } from "@/stores/auth";
 
 // get the auth store
 const authStore = useAuthStore();

@@ -9,6 +9,7 @@ export interface User {
 	lastname: string;
 	email: string;
 	role: number;
+	roleName: string;
 }
 
 // Define Auth store with state and actions
@@ -48,9 +49,15 @@ export const useAuthStore = defineStore("auth", () => {
 	}
 
 	// Logout action: clear user data and auth status
-	function logout() {
-		user.value = null;
-		isAuthenticated.value = false;
+	async function logout() {
+		try {
+			await api.post("/logout");
+		} catch (error) {
+			console.error("Logout failed:", error);
+		} finally {
+			user.value = null;
+			isAuthenticated.value = false;
+		}
 
 		// JWT token is not deleted backend side here
 		// We need to make a request to the backend to delete the token (ex: POST /logout)
