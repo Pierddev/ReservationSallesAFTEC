@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:3000/api/get-building
+method: POST
+examples: .resources/get-building.resources/examples
+order: 3937907721268239
