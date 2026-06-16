@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import api from "@/services/apiService";
 
 console.log("BookingPage loaded");
@@ -12,6 +12,26 @@ interface Building {
 const buildings = ref<Building[]>([]);
 const selectedBuilding = ref<number | null>(null);
 
+interface Floor {
+	id: number;
+	level: number;
+}
+
+const floors = ref<Floor[]>([]);
+const selectedFloor = ref<number | null>(null);
+
+async function fetchFloors(buildingId: number) {
+	try {
+		const response = await api.get("/get-floor-by-building", {
+			params: { buildingId },
+		});
+		floors.value = response.data.floors;
+	} catch (error) {
+		console.error("Erreur lors de la récupération des étages :", error);
+		floors.value = [];
+	}
+}
+
 // onMounted permet de charger les informations au chargement de la page/composant
 onMounted(async () => {
 	try {
@@ -19,6 +39,15 @@ onMounted(async () => {
 		buildings.value = response.data.buildings;
 	} catch (error) {
 		console.error("Erreur lors de la récupération des bâtiments :", error);
+	}
+});
+
+watch(selectedBuilding, (newBuildingId) => {
+	selectedFloor.value = null;
+	if (newBuildingId) {
+		fetchFloors(newBuildingId);
+	} else {
+		floors.value = [];
 	}
 });
 
@@ -40,9 +69,9 @@ const capacity = ref(15);
                     </select>
                 </div>
                 <div class="flex flex-col items-center mx-10">
-                    <select name="floors" id="floors" class="border-2 border-black/30 w-full p-2 rounded-xl">
+                    <select name="floors" id="floors" v-model="selectedFloor" class="border-2 border-black/30 w-full p-2 rounded-xl">
                         <option :value="null" disabled>Choisir un étage</option>
-                        <option value="floor3">Étage 3</option>
+                        <option v-for="floor in floors" :key="floor.id" :value="floor.id">Étage {{ floor.level }}</option>
                     </select>
                 </div>
                 <div class="flex flex-col items-center mx-10">
