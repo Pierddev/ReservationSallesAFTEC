@@ -2,7 +2,7 @@
 </script>
 
 <template>
-	<section>
+	<section class="relative">
 		<div class="liquid-bg">
 			<div class="orb"></div>
 			<div class="orb"></div>
