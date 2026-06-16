@@ -4,6 +4,7 @@ import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
 import buildingRoutes from "./routes/buildings.js";
+import floorRoutes from "./routes/floors.js";
 import routesAPI from "./routes/index.js";
 // Protected routes requiring a valid JWT token
 // Import the router for user profile routes (GET /me)
@@ -32,6 +33,7 @@ app.use("/api", routesAPI);
 // GET /api/me restores the user session on the frontend after a page refresh
 app.use("/api", profileRoutes);
 app.use("/api", buildingRoutes);
+app.use("/api", floorRoutes);
 
 // BDD connexion and server start
 AppDataSource.initialize()
