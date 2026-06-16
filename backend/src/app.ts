@@ -4,6 +4,7 @@ import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
 import buildingRoutes from "./routes/buildings.js";
+import classroomRoutes from "./routes/classrooms.js";
 import floorRoutes from "./routes/floors.js";
 import routesAPI from "./routes/index.js";
 // Protected routes requiring a valid JWT token
@@ -34,6 +35,7 @@ app.use("/api", routesAPI);
 app.use("/api", profileRoutes);
 app.use("/api", buildingRoutes);
 app.use("/api", floorRoutes);
+app.use("/api", classroomRoutes);
 
 // BDD connexion and server start
 AppDataSource.initialize()
