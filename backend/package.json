@@ -46,7 +46,8 @@
 		"migration:generate": "npm run typeorm -- migration:generate -d src/database/data-source.ts src/migrations/Migration",
 		"migration:run": "npm run typeorm -- migration:run -d src/database/data-source.ts",
 		"migration:revert": "npm run typeorm -- migration:revert -d src/database/data-source.ts",
-		"seed": "tsx src/database/seeds/seeders.ts"
+		"seed": "tsx src/database/seeds/seeders.ts",
+		"seed:dev": "tsx src/database/seeds/seeders-dev.ts"
 	},
 	"keywords": [],
 	"author": "",
