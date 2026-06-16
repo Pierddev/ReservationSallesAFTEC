@@ -3,8 +3,8 @@ import cors from "cors";
 import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
+import buildingRoutes from "./routes/buildings.js";
 import routesAPI from "./routes/index.js";
-
 // Protected routes requiring a valid JWT token
 // Import the router for user profile routes (GET /me)
 import profileRoutes from "./routes/profile.js";
@@ -31,6 +31,7 @@ app.use("/api", routesAPI);
 // Mount protected routes (JWT authentication required)
 // GET /api/me restores the user session on the frontend after a page refresh
 app.use("/api", profileRoutes);
+app.use("/api", buildingRoutes);
 
 // BDD connexion and server start
 AppDataSource.initialize()
