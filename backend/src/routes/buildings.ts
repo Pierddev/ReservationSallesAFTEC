@@ -5,6 +5,6 @@ import { authenticate } from "../middleware/authenticate.js";
 const router = Router();
 const buildingController = new BuildingController();
 
-router.post("/get-building", authenticate, buildingController.getAll);
+router.get("/get-building", authenticate, buildingController.getAll);
 
 export default router;
