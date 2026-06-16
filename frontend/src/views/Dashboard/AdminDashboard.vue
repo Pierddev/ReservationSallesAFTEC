@@ -12,7 +12,7 @@ async function handleLogout() {
 </script>
 
 <template>
-    <div class="flex flex-col min-w-120 gap-4 justify-center items-center card-layout">
+    <div class="flex flex-col min-w-120 gap-4 justify-center items-center card-layout p-10 rounded-3xl">
         <span class="bg-aftec-blue text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Administrateur</span>
         <h1 class="font-heading font-bold text-2xl">Tableau de bord Admin</h1>
         <p class="text-lg">Bienvenue, {{ authStore.user?.firstname }} {{ authStore.user?.lastname }}</p>

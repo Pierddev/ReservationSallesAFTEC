@@ -13,7 +13,7 @@ async function handleLogout() {
 
 <template>
     <div class="h-screen flex justify-center items-center">
-        <div class="flex flex-col min-w-120 gap-4 justify-center items-center card-layout">
+        <div class="flex flex-col min-w-120 gap-4 justify-center items-center card-layout p-10 rounded-3xl">
             <h1 class="font-heading font-bold text-2xl">Tableau de bord</h1>
             <p class="text-lg">Bienvenue, {{ authStore.user?.firstname }} {{ authStore.user?.lastname }}</p>
             <p class="text-sm opacity-70">{{ authStore.user?.email }}</p>

@@ -5,7 +5,7 @@ import NavigationSidebar from "@/components/NavigationSidebar.vue";
 <template>
   <section class="flex min-h-screen">
     <NavigationSidebar />
-    <div class="flex-1 flex justify-center items-center">
+    <div class="flex-1 flex justify-center items-center py-4">
       <RouterView />
     </div>
   </section>

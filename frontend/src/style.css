@@ -181,7 +181,7 @@
 }
 
 @utility card-layout {
-	@apply bg-card/40 backdrop-blur-md p-10 rounded-3xl border-2 border-card/20 shadow-md;
+	@apply bg-card/40 backdrop-blur-md border-2 border-card/20 shadow-md;
 }
 
 @utility card-error {

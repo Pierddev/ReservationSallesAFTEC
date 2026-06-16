@@ -59,7 +59,7 @@ async function handleSubmit() {
 
 <template>
     <div class="h-screen flex justify-center items-center">
-        <form class="flex flex-col h-fit min-w-120 gap-4 justify-center items-center card-layout" @submit.prevent="handleSubmit">
+        <form class="flex flex-col h-fit min-w-120 gap-4 justify-center items-center card-layout p-10 rounded-3xl" @submit.prevent="handleSubmit">
             <div class="bg-white p-5 rounded-full">
                 <img :src="aftecLogo" class="w-12 h-12" alt="Logo" />
             </div>
