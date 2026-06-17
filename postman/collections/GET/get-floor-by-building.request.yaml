@@ -1,5 +1,8 @@
 $kind: http-request
-url: http://localhost:3000/api/get-floor-by-building/
+name: get-floor-by-building
+url: http://localhost:3000/api/get-floor-by-building/:building
 method: GET
+pathVariables:
+  building: ""
 examples: .resources/get-floor-by-building.resources/examples
 order: 2334914643792110
