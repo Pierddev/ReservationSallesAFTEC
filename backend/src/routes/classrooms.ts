@@ -6,7 +6,7 @@ const router = Router();
 const classroomController = new ClassroomController();
 
 router.get(
-	"/get-classroom-by-floor",
+	"/get-classroom-by-floor/:floorId",
 	authenticate,
 	classroomController.getByFloor,
 );

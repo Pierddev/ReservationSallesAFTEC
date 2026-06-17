@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:3000/api/get-floor-by-building/
+method: GET
+examples: .resources/get-floor-by-building.resources/examples
+order: 2334914643792110

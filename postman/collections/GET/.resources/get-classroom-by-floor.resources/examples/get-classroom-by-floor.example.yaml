@@ -1,0 +1,11 @@
+$kind: http-example
+request:
+  url: http://localhost:3000/api/get-classroom-by-floor/67
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: json
+    content: ""
+order: 1781684292339

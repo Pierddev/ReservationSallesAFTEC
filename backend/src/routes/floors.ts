@@ -6,7 +6,7 @@ const router = Router();
 const floorController = new FloorController();
 
 router.get(
-	"/get-floor-by-building",
+	"/get-floor-by-building/:buildingId",
 	authenticate,
 	floorController.getByBuilding,
 );
