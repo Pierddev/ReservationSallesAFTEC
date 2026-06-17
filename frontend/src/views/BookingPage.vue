@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import api from "@/services/apiService";
+import { type Classroom, classroomService } from "@/services/classroomService";
 
 console.log("BookingPage loaded");
 
@@ -30,19 +31,13 @@ async function fetchFloors(buildingId: number) {
 	}
 }
 
-interface Classroom {
-	id: number;
-	name: string;
-	capacity: number;
-}
-
 const classrooms = ref<Classroom[]>([]);
 const selectedClassroom = ref<number | null>(null);
 
 async function fetchClassroom(floorId: number) {
 	try {
-		const response = await api.get(`/get-classroom-by-floor/${floorId}`);
-		classrooms.value = response.data.classrooms;
+		// Appel direct de la méthode du service qui renvoie un tableau typé Classroom[]
+		classrooms.value = await classroomService.getByFloor(floorId);
 	} catch (error) {
 		console.error("Erreur lors de la récupération des salles :", error);
 		classrooms.value = [];
