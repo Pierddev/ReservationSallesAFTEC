@@ -2,12 +2,12 @@
 name: create-issue
 description: >
     Use when the user asks to create a GitHub issue based on staged changes.
-    Fully automated execution. Never suggests or creates branches/commits.
+    Shows the issue to the user before creating. Never suggests or creates branches/commits.
 ---
 
 # Create GitHub Issue
 
-The user wants to create a GitHub issue for changes that are staged but not yet committed. The agent must analyze the staged files and create the issue **fully automatically** — no questions, no prompts. The issue must be **short, precise, and directly derived from the diff context**.
+The user wants to create a GitHub issue for changes that are staged but not yet committed. The issue must be **short, precise, in English, and directly derived from the diff context**.
 
 ## Workflow
 
@@ -27,15 +27,15 @@ The user wants to create a GitHub issue for changes that are staged but not yet 
     - Changes with security keywords → **security** (`security.yml`, label: `security`)
     - Otherwise → default to **feature** (`feature.yml`, label: `enhancement`)
 
-2. **Auto-generate the issue body** — short and precise. No filler text, no greetings, no sign-offs. Fill only the template's **required** sections based on what the diff reveals. Skip optional sections.
+2. **Auto-generate the issue body** — short, precise, in English. No filler text, no greetings, no sign-offs.
 
-    Follow this minimal structure depending on the type:
-    - **Feature** → `Problem Statement` + `Proposed Solution` (1-2 sentences each). Priority: `Important`.
-    - **Bug** → `Description` + `Steps to Reproduce` (from diff if traceable) + `Expected` vs `Actual`.
-    - **Question** → `Question` only.
-    - **Security** → `Description` + `Impact` + `Steps to Reproduce`.
+    Read the local issue template at `./.github/ISSUE_TEMPLATE/<type>.yml` (where `<type>` is `feature`, `bug`, or `security` as detected above).
+    Fill only the **required** sections based on what the diff reveals. Skip optional sections.
+    For **feature**: fill `Problem Statement` (1-2 sentences), `Proposed Solution` (1-2 sentences), and set `Priority: Important`.
 
-3. **Create the issue** immediately using `gh` CLI — no confirmation:
+3. **Present the issue** to the user — show the title, label, and full body. Wait for the user's approval before creating.
+
+4. **Create the issue** on approval using `gh` CLI:
 
 ```bash
    gh issue create \
