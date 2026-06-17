@@ -6,6 +6,7 @@ import { AppDataSource } from "./database/data-source.js";
 import bookingRoutes from "./routes/bookings.js";
 import buildingRoutes from "./routes/buildings.js";
 import classroomRoutes from "./routes/classrooms.js";
+import equipmentRoutes from "./routes/equipments.js";
 import floorRoutes from "./routes/floors.js";
 import routesAPI from "./routes/index.js";
 import profileRoutes from "./routes/profile.js";
@@ -36,6 +37,7 @@ app.use("/api", buildingRoutes);
 app.use("/api", floorRoutes);
 app.use("/api", classroomRoutes);
 app.use("/api", bookingRoutes);
+app.use("/api", equipmentRoutes);
 
 // BDD connexion and server start
 AppDataSource.initialize()

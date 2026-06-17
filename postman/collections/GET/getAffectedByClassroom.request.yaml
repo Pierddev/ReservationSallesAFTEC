@@ -1,0 +1,7 @@
+$kind: http-request
+url: http://localhost:3000/api/classrooms/:classroomId/equipments
+method: GET
+pathVariables:
+  classroomId: ""
+examples: .resources/getAffectedByClassroom.resources/examples
+order: 4497434074058375

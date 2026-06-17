@@ -3,8 +3,8 @@ import { Booking } from "../entity/Booking.entity.js";
 
 export class BookingService {
 	async getByClassroom(classroomId: number): Promise<Booking[]> {
-		const bookingReposotory = AppDataSource.getRepository(Booking);
-		return await bookingReposotory.find({
+		const bookingRepository = AppDataSource.getRepository(Booking);
+		return await bookingRepository.find({
 			where: { classroom: { id: classroomId } },
 		});
 	}
