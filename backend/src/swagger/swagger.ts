@@ -31,8 +31,8 @@ const options: swaggerJsdoc.Options = {
 		},
 	},
 	apis: [
-		path.resolve(projectRoot, "src/routes/*.ts"),
-		path.resolve(projectRoot, "src/entity/*.ts"),
+		path.resolve(projectRoot, "src/routes/*.ts").replace(/\\/g, "/"),
+		path.resolve(projectRoot, "src/entity/*.ts").replace(/\\/g, "/"),
 	],
 };
 

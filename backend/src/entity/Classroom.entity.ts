@@ -8,6 +8,23 @@ import {
 } from "typeorm";
 import { Floor } from "./Floor.entity.js";
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Classroom:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: L'identifiant de la salle
+ *         name:
+ *           type: string
+ *           description: Le nom de la salle
+ *         capacity:
+ *           type: integer
+ *           description: La capacité de la salle
+ */
 @Entity({ name: "classroom" })
 export class Classroom {
 	@PrimaryGeneratedColumn({ type: "bigint" })
