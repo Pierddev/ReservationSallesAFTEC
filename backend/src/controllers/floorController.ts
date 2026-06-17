@@ -5,7 +5,7 @@ import { FloorService } from "../services/floorService.js";
 export class FloorController {
 	async getByBuilding(req: AuthRequest, res: Response) {
 		try {
-			const buildingId = Number(req.query.buildingId);
+			const buildingId = Number(req.params.buildingId);
 
 			if (Number.isNaN(buildingId)) {
 				return res

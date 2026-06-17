@@ -22,9 +22,7 @@ const selectedFloor = ref<number | null>(null);
 
 async function fetchFloors(buildingId: number) {
 	try {
-		const response = await api.get("/get-floor-by-building", {
-			params: { buildingId },
-		});
+		const response = await api.get(`/get-floor-by-building/${buildingId}`);
 		floors.value = response.data.floors;
 	} catch (error) {
 		console.error("Erreur lors de la récupération des étages :", error);

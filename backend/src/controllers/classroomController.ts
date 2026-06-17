@@ -5,7 +5,7 @@ import { ClassroomService } from "../services/classroomService.js";
 export class ClassroomController {
 	async getByFloor(req: AuthRequest, res: Response) {
 		try {
-			const floorId = Number(req.query.floorId);
+			const floorId = Number(req.params.floorId);
 
 			if (Number.isNaN(floorId)) {
 				return res.status(400).json({ message: "Paramètre floorId invalide" });

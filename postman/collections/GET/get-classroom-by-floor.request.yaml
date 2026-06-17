@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:3000/api/get-classroom-by-floor/67
+method: GET
+examples: .resources/get-classroom-by-floor.resources/examples
+order: 3650689959810022
