@@ -3,12 +3,11 @@ import cors from "cors";
 import express from "express";
 import { env } from "./config/env.js";
 import { AppDataSource } from "./database/data-source.js";
+import bookingRoutes from "./routes/bookings.js";
 import buildingRoutes from "./routes/buildings.js";
 import classroomRoutes from "./routes/classrooms.js";
 import floorRoutes from "./routes/floors.js";
 import routesAPI from "./routes/index.js";
-// Protected routes requiring a valid JWT token
-// Import the router for user profile routes (GET /me)
 import profileRoutes from "./routes/profile.js";
 import { setupSwagger } from "./swagger/swagger.js";
 
@@ -36,6 +35,7 @@ app.use("/api", profileRoutes);
 app.use("/api", buildingRoutes);
 app.use("/api", floorRoutes);
 app.use("/api", classroomRoutes);
+app.use("/api", bookingRoutes);
 
 // BDD connexion and server start
 AppDataSource.initialize()

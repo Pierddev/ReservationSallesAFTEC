@@ -1,0 +1,11 @@
+$kind: http-example
+request:
+  url: http://localhost:3000/api/get-booking-by-classroom/92
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: json
+    content: ""
+order: 1781689840404
