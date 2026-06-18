@@ -33,13 +33,14 @@ Ce diagramme décrit la phase de connexion ainsi que le processus de restauratio
 Ce diagramme modélise l'algorithme de réservation d'une salle, incluant les vérifications successives de disponibilité, de désactivation de la salle, et d'équipements requis.
 
 <p align="center">
-  <img src="docs/images/usecases/booking_and_conflict.png" alt="Diagramme de réservation" width="90%">
+  <img src="docs/images/usecases/booking_and_conflicts.png" alt="Diagramme de réservation" width="90%">
 </p>
 
 ### Modèle de Données
 
-- **MCD (Modèle Conceptuel de Données) :** _< Image du MCD ici >_.
-- **Code SQL :** _< Ajouter ici >_
+- **MCD (Modèle Conceptuel de Données) :**
+
+![Image du MCD](docs/images/database/mcd.png)
 
 ### Maquettes (Wireframes)
 
