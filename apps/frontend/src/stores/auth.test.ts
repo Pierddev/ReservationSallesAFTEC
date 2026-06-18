@@ -1,6 +1,6 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
-import { setActivePinia, createPinia } from "pinia";
-import { useAuthStore, type User } from "./auth";
+import { createPinia, setActivePinia } from "pinia";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { type User, useAuthStore } from "./auth";
 
 // vi.mock() remplace le vrai module apiService par une version fictive.
 vi.mock("../services/apiService", () => ({
@@ -61,9 +61,9 @@ describe("auth store", () => {
 
 		const store = useAuthStore();
 		// .rejects permet de vérifier que la promesse rejette bien avec le message d'erreur attendu
-		await expect(
-			store.login("wrong@test.fr", "wrong"),
-		).rejects.toEqual({ message: "Email ou mot de passe incorrect" });
+		await expect(store.login("wrong@test.fr", "wrong")).rejects.toEqual({
+			message: "Email ou mot de passe incorrect",
+		});
 
 		// L'état ne doit pas avoir changé
 		expect(store.user).toBeNull();
