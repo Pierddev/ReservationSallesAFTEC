@@ -3,21 +3,46 @@
 ## 1. Présentation & Contexte
 
 **ResAFTEC** est une application web de réservation de salles développée dans le cadre de mon BTS SIO. Elle permet aux utilisateurs (personnel et étudiants) de consulter les salles disponibles et d'effectuer des réservations (pour les utilisateurs autorisés : professeurs et administrateurs).
+
 - **Objectif :** Moderniser la gestion des salles de l'établissement suite à la construction d'un nouveau bâtiment, en fournissant une interface intuitive pour les utilisateurs et un tableau de bord d'administration, tout en posant les bases d'un système de contrôle d'accès physique connecté.
 
 ---
 
 ## 2. Conception & Modélisation
 
-### Cas d'Utilisation (Use Cases)
-*< diagrammes à ajouter ici >*
-- Fonctionnalités implémentées : Authentification (JWT), Gestion des utilisateurs, Gestion des salles/équipements, Réservation avec génération de code unique.
+### Cas d'Utilisation & Diagrammes
+
+#### 1. Diagramme de Cas d'Utilisation Global
+
+Ce diagramme détaille les différents rôles utilisateurs (Étudiant, Professeur, Administrateur) et leurs droits respectifs au sein de l'application.
+
+<p align="center">
+  <img src="docs/images/usecases/global_authorizations.png" alt="Diagramme d'autorisations globales" width="80%">
+</p>
+
+#### 2. Flux d'Authentification (Cookie HTTP-Only & JWT)
+
+Ce diagramme décrit la phase de connexion ainsi que le processus de restauration automatique de session (via la route `/api/me`) lors d'un rafraîchissement de la page.
+
+<p align="center">
+  <img src="docs/images/usecases/authentication.png" alt="Diagramme de connexion" width="90%">
+</p>
+
+#### 3. Flux de Réservation & Gestion des Conflits
+
+Ce diagramme modélise l'algorithme de réservation d'une salle, incluant les vérifications successives de disponibilité, de désactivation de la salle, et d'équipements requis.
+
+<p align="center">
+  <img src="docs/images/usecases/booking_and_conflict.png" alt="Diagramme de réservation" width="90%">
+</p>
 
 ### Modèle de Données
-- **MCD (Modèle Conceptuel de Données) :** *< Image du MCD ici >*.
-- **Code SQL :** *< Ajouter ici >*
+
+- **MCD (Modèle Conceptuel de Données) :** _< Image du MCD ici >_.
+- **Code SQL :** _< Ajouter ici >_
 
 ### Maquettes (Wireframes)
+
 - [Lien vers les maquettes (Penpot)](https://design.penpot.app/#/workspace?team-id=e7a86fff-661d-81c1-8008-10c6effa856d&file-id=e7a86fff-661d-81c1-8008-0f0d1efc859f&page-id=e7a86fff-661d-81c1-8008-0f0d1efc85a0)
 
 ---
@@ -25,6 +50,7 @@
 ## 3. Architecture & Contraintes Techniques
 
 ### Architecture Logicielle
+
 - **Backend :** Node.js / Express / TypeScript. Architecture en couches (Routes, Contrôleurs, Services).
 - **ORM :** TypeORM avec connexion à une base MariaDB.
 - **Frontend :** Vue / Pinia / Tailwind CSS.
@@ -34,6 +60,7 @@
 ## 4. Guide d'Installation et Configuration
 
 ### Prérequis
+
 - Node.js (vX.X)
 - MariaDB
 - Cloner le dépôt : `git clone https://github.com/Pierddev/ReservationSallesAFTEC.git`
@@ -42,18 +69,19 @@
 
 Créez un fichier `.env` à la racine du dossier `apps/backend/` en vous basant sur le fichier `.env.example` fourni :
 
-| Variable       | Description                                                | Valeur par défaut          | Obligatoire |
-| -------------- | ---------------------------------------------------------- | -------------------------- | ----------- |
-| `PORT`         | Port d'écoute du serveur Node.js                           | `3005`                     | Non         |
-| `DB_HOST`      | Hôte de la base de données MariaDB                         | `localhost`                | Oui         |
-| `DB_PORT`      | Port de la base de données                                 | `3306`                     | Non         |
-| `DB_NAME`      | Nom de la base de données                                  | —                          | Oui         |
-| `DB_USER`      | Nom d'utilisateur de la base de données                    | —                          | Oui         |
-| `DB_PASSWORD`  | Mot de passe de l'utilisateur base de données              | —                          | Oui         |
-| `JWT_SECRET`   | Clé secrète pour la signature et vérification des tokens JWT | —                        | Oui         |
-| `URL_SITE`     | URL du frontend (utilisée pour la configuration CORS)      | `http://localhost:5173`    | Oui         |
+| Variable      | Description                                                  | Valeur par défaut       | Obligatoire |
+| ------------- | ------------------------------------------------------------ | ----------------------- | ----------- |
+| `PORT`        | Port d'écoute du serveur Node.js                             | `3005`                  | Non         |
+| `DB_HOST`     | Hôte de la base de données MariaDB                           | `localhost`             | Oui         |
+| `DB_PORT`     | Port de la base de données                                   | `3306`                  | Non         |
+| `DB_NAME`     | Nom de la base de données                                    | —                       | Oui         |
+| `DB_USER`     | Nom d'utilisateur de la base de données                      | —                       | Oui         |
+| `DB_PASSWORD` | Mot de passe de l'utilisateur base de données                | —                       | Oui         |
+| `JWT_SECRET`  | Clé secrète pour la signature et vérification des tokens JWT | —                       | Oui         |
+| `URL_SITE`    | URL du frontend (utilisée pour la configuration CORS)        | `http://localhost:5173` | Oui         |
 
 **Exemple de fichier `.env` :**
+
 ```env
 PORT=3000
 DB_HOST=localhost
@@ -66,7 +94,9 @@ URL_SITE=http://localhost:5173
 ```
 
 ### Initialisation du Backend
-*< A définir ici >*
+
+_< A définir ici >_
 
 ### Initialisation du Frontend
-*< A définir ici >*
+
+_< A définir ici >_
