@@ -10,5 +10,6 @@ router.get(
 	authenticate,
 	bookingController.getByClassroom,
 );
+router.post("/create-booking", authenticate, bookingController.create);
 
 export default router;
