@@ -39,19 +39,19 @@ export async function seedClassroomDisablements(
 	// Données de test réalistes pour les indisponibilités de salles
 	const disablementsData = [
 		{
-			classroomName: "Salle A202",
+			classroomName: "A202",
 			start_at: getDayWithTime(0, 8, 0), // Aujourd'hui de 08h00...
 			end_at: getDayWithTime(0, 12, 0), // ...à 12h00
 			reason: "Maintenance informatique (mise à jour des postes clients)",
 		},
 		{
-			classroomName: "Salle B202",
+			classroomName: "B202",
 			start_at: getDayWithTime(1, 8, 0), // Demain de 08h00...
 			end_at: getDayWithTime(2, 18, 0), // ...à après-demain 18h00
 			reason: "Travaux de peinture et rénovation des sols",
 		},
 		{
-			classroomName: "Salle C102",
+			classroomName: "C102",
 			start_at: getDayWithTime(-1, 14, 0), // Hier de 14h00...
 			end_at: getDayWithTime(-1, 18, 0), // ...à 18h00
 			reason: "Dégât des eaux (intervention plomberie d'urgence)",
