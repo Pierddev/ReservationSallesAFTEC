@@ -164,3 +164,33 @@ cd apps/frontend/
 # Lancer le serveur du frontend en mode développement
 npm run dev
 ```
+
+## 5. Commandes Personnalisées
+
+### Commandes Racine
+
+| Commande | Description |
+|---|---|
+| `npm run install:all` | Installe toutes les dépendances (root + backend + frontend) |
+| `npm run test` | Lance les tests Jest |
+| `npm run test:cov` | Lance les tests avec couverture |
+
+### Commandes Backend
+
+| Commande | Description |
+|---|---|
+| `npm run dev` | Démarre le backend en mode développement (compilation watch + rechargement auto) |
+| `npm run migration:generate` | Génère une nouvelle migration TypeORM |
+| `npm run migration:run` | Exécute les migrations en attente |
+| `npm run migration:revert` | Annule la dernière migration |
+| `npm run seed` | Peuple la BDD avec les données de test |
+| `npm run seed:dev` | Efface et peuple la BDD avec les données de test |
+
+### Commandes Frontend
+
+| Commande | Description |
+|---|---|
+| `npm run build` | Compile le frontend pour la production (vérification TypeScript incluse) |
+| `npm run test` | Lance les tests Vitest (mode watch) |
+| `npm run test:run` | Lance les tests Vitest (une seule exécution) |
+| `npm run test:cov` | Lance les tests avec couverture |
