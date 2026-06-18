@@ -30,8 +30,8 @@ export async function seedBookings(
 
 	const getDayWithTime = (daysOffset: number, hours: number, minutes = 0) => {
 		const d = new Date(today);
-		d.setDate(d.getDate() + daysOffset);
-		d.setHours(hours, minutes, 0, 0);
+		d.setUTCDate(d.getDate() + daysOffset);
+		d.setUTCHours(hours, minutes, 0, 0);
 		return d;
 	};
 
