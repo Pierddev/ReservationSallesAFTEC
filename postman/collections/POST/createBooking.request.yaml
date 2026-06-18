@@ -1,0 +1,5 @@
+$kind: http-request
+name: createBooking
+url: http://localhost:3000/api/create-booking
+method: POST
+order: 4426910413078572
