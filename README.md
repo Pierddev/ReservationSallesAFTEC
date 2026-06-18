@@ -40,7 +40,7 @@
 
 ### Variables d'Environnement
 
-Créez un fichier `.env` à la racine du dossier `backend/` en vous basant sur le fichier `.env.example` fourni :
+Créez un fichier `.env` à la racine du dossier `apps/backend/` en vous basant sur le fichier `.env.example` fourni :
 
 | Variable       | Description                                                | Valeur par défaut          | Obligatoire |
 | -------------- | ---------------------------------------------------------- | -------------------------- | ----------- |
