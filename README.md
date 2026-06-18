@@ -62,7 +62,7 @@ Ce diagramme modélise l'algorithme de réservation d'une salle, incluant les v�
 
 ### Prérequis
 
-- Node.js (vX.X)
+- Node.js >= 18
 - MariaDB
 - Cloner le dépôt : `git clone https://github.com/Pierddev/ReservationSallesAFTEC.git`
 
@@ -72,7 +72,7 @@ Créez un fichier `.env` à la racine du dossier `apps/backend/` en vous basant 
 
 | Variable      | Description                                                  | Valeur par défaut       | Obligatoire |
 | ------------- | ------------------------------------------------------------ | ----------------------- | ----------- |
-| `PORT`        | Port d'écoute du serveur Node.js                             | `3005`                  | Non         |
+| `PORT`        | Port d'écoute du serveur Node.js                             | `3000`                  | Non         |
 | `DB_HOST`     | Hôte de la base de données MariaDB                           | `localhost`             | Oui         |
 | `DB_PORT`     | Port de la base de données                                   | `3306`                  | Non         |
 | `DB_NAME`     | Nom de la base de données                                    | —                       | Oui         |
@@ -87,17 +87,80 @@ Créez un fichier `.env` à la racine du dossier `apps/backend/` en vous basant 
 PORT=3000
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=reservation_salles_aftec
-DB_USER=reservation_salles_app
-DB_PASSWORD=votre_mot_de_passe
-JWT_SECRET=une_cle_secrete_tres_longue_et_aleatoire
+DB_NAME=res_aftec
+DB_USER=res_app
+DB_PASSWORD=your_db_password
+JWT_SECRET=YOUR_JWT_SECRET
 URL_SITE=http://localhost:5173
+```
+
+### Configuration de la Base de Données
+
+Avant de lancer le projet, vous devez créer la base de données et l'utilisateur dans MariaDB. Connectez-vous à votre invite de commande MariaDB/MySQL en tant que `root` :
+
+```bash
+mariadb -u root -p
+```
+
+Puis exécutez les commandes SQL suivantes pour créer la base de données, l'utilisateur et lui accorder tous les privilèges nécessaires (en cohérence avec votre fichier `.env`) :
+
+```sql
+-- Création de la base de données
+CREATE DATABASE IF NOT EXISTS `res_aftec` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+-- Création de l'utilisateur de l'application (changez 'your_db_password' par votre mot de passe, et reportez le dans le .env)
+CREATE USER IF NOT EXISTS 'res_app'@'localhost' IDENTIFIED BY 'your_db_password';
+
+-- Attribution des privilèges sur la base de données
+GRANT ALL PRIVILEGES ON `res_aftec`.* TO 'res_app'@'localhost';
+
+-- Rechargement des privilèges
+FLUSH PRIVILEGES;
+
+-- Quitter
+EXIT;
+```
+
+### Installation du projet
+
+```bash
+# Cloner le dépôt
+git clone https://github.com/Pierddev/ReservationSallesAFTEC.git
+
+cd ReservationSallesAFTEC/
+
+# Installer les dépendances nécessaires au fonctionnement du projet
+npm run install:all
+
+# Créer le fichier de configuration .env
+cp apps/backend/.env.example apps/backend/.env
+
+# Éditer le fichier
+nano apps/backend/.env
 ```
 
 ### Initialisation du Backend
 
-_< A définir ici >_
+```bash
+cd apps/backend/
+
+# Exécuter les migrations pour créer les tables dans la base de données
+npm run migration:run
+
+# Peupler la base de données avec quelques données de test
+npm run seed
+
+# Lancer le serveur du backend en mode développement
+npm run dev
+```
 
 ### Initialisation du Frontend
 
-_< A définir ici >_
+Dans un autre terminal :
+
+```bash
+cd apps/frontend/
+
+# Lancer le serveur du frontend en mode développement
+npm run dev
+```
