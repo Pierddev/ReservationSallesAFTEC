@@ -53,19 +53,21 @@ router.beforeEach(async (to) => {
 
 	// Define public pages that don't need authentication
 	const publicPages = ["Home", "Login", "Register"];
+	const isPublicPage = publicPages.includes(to.name as string);
 
-	// If the route is protected and the user is not authenticated in the store,
-	// attempt to restore the session via the JWT cookie (GET /api/me)
-	if (!publicPages.includes(to.name as string) && !authStore.isAuthenticated) {
-		// Phase 2: session restoration — fetchUser calls GET /api/me protected by JWT
-		// If the cookie is valid, the backend returns user info and isAuthenticated becomes true
-
+	// Attempt session restoration from HttpOnly cookie if not yet authenticated
+	if (!authStore.isAuthenticated) {
 		await authStore.fetchUser();
+	}
 
-		// After attempting restoration, if still not authenticated → redirect to login
-		if (!authStore.isAuthenticated) {
-			return { name: "Login", query: { error: "unauthorized" } };
-		}
+	// Not authenticated + protected route → redirect to login
+	if (!authStore.isAuthenticated && !isPublicPage) {
+		return { name: "Login", query: { error: "unauthorized" } };
+	}
+
+	// Authenticated + public page → redirect to dashboard
+	if (authStore.isAuthenticated && isPublicPage) {
+		return { name: "Dashboard" };
 	}
 
 	return true;
