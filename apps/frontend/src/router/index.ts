@@ -5,7 +5,8 @@ import { useAuthStore } from "@/stores/auth";
 const routes = [
 	{
 		path: "/",
-		redirect: "/dashboard",
+		name: "Home",
+		component: () => import("../views/HomePage.vue"),
 	},
 	{
 		path: "/login",
@@ -51,7 +52,7 @@ router.beforeEach(async (to) => {
 	const authStore = useAuthStore();
 
 	// Define public pages that don't need authentication
-	const publicPages = ["Login", "Register"];
+	const publicPages = ["Home", "Login", "Register"];
 
 	// If the route is protected and the user is not authenticated in the store,
 	// attempt to restore the session via the JWT cookie (GET /api/me)
