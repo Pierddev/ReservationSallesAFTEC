@@ -32,9 +32,6 @@ export class BookingService {
 	}
 
 	async create(dto: createBookingDto, userId: number) {
-		console.log("Reçu - Début:", dto.start_at.toISOString());
-		console.log("Reçu - Fin:", dto.end_at.toISOString());
-
 		const classroomRepository = AppDataSource.getRepository(Classroom);
 		const userRepository = AppDataSource.getRepository(User);
 		const classroomDisablementRepository =
