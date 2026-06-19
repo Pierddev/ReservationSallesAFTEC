@@ -32,7 +32,6 @@ export class BookingService {
 	}
 
 	async create(dto: createBookingDto, userId: number) {
-
 		const classroomRepository = AppDataSource.getRepository(Classroom);
 		const userRepository = AppDataSource.getRepository(User);
 		const classroomDisablementRepository =

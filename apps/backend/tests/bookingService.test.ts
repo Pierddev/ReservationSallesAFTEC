@@ -15,9 +15,7 @@ jest.unstable_mockModule("../src/database/data-source.js", () => ({
 	},
 }));
 
-const { BookingService } = await import(
-	"../src/services/bookingService.js"
-);
+const { BookingService } = await import("../src/services/bookingService.js");
 
 describe("BookingService", () => {
 	let bookingService: BookingServiceType;
@@ -29,16 +27,18 @@ describe("BookingService", () => {
 
 	describe("getConflictingBookings", () => {
 		it("should return conflicting bookings when they exist", async () => {
-			const fakeConflicts = [
-				{ id: 1, title: "Conflicting booking" },
-			];
+			const fakeConflicts = [{ id: 1, title: "Conflicting booking" }];
 
 			mockRepository.find.mockResolvedValueOnce(fakeConflicts);
 
 			const start_at = new Date("2026-06-20T10:00:00Z");
 			const end_at = new Date("2026-06-20T12:00:00Z");
 
-			const result = await bookingService.getConflictingBookings(1, start_at, end_at);
+			const result = await bookingService.getConflictingBookings(
+				1,
+				start_at,
+				end_at,
+			);
 
 			expect(result).toEqual(fakeConflicts);
 			expect(mockRepository.find).toHaveBeenCalledWith({
@@ -56,7 +56,11 @@ describe("BookingService", () => {
 			const start_at = new Date("2026-06-20T10:00:00Z");
 			const end_at = new Date("2026-06-20T12:00:00Z");
 
-			const result = await bookingService.getConflictingBookings(1, start_at, end_at);
+			const result = await bookingService.getConflictingBookings(
+				1,
+				start_at,
+				end_at,
+			);
 
 			expect(result).toEqual([]);
 		});
