@@ -10,6 +10,44 @@ import {
 import { Classroom } from "./Classroom.entity.js";
 import { User } from "./User.entity.js";
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Booking:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: L'identifiant de la réservation
+ *         title:
+ *           type: string
+ *           description: Le titre de la réservation
+ *         created_at:
+ *           type: string
+ *           format: date-time
+ *           description: Date de création
+ *         start_at:
+ *           type: string
+ *           format: date-time
+ *           description: Date de début
+ *         end_at:
+ *           type: string
+ *           format: date-time
+ *           description: Date de fin
+ *         code:
+ *           type: string
+ *           nullable: true
+ *           description: Code de validation
+ *         code_generate_at:
+ *           type: string
+ *           format: date-time
+ *           nullable: true
+ *           description: Date de génération du code
+ *         is_synced_to_iot:
+ *           type: boolean
+ *           description: Synchronisé avec l'IoT
+ */
 @Check("end_at > start_at")
 @Entity({ name: "booking" })
 export class Booking {
