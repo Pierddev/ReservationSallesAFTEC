@@ -12,7 +12,6 @@
 		"test:cov": "vitest run --coverage",
 		"cy:open": "cypress open",
 		"cy:run": "cypress run"
-
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.3.0",
