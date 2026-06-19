@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:3000/api/get-booking-by-classroom/:classroomId
+method: GET
+examples: .resources/get-booking-by-classroom.resources/examples
+order: 4471066708980772

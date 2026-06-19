@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:3000/api/create-booking
+method: POST
+examples: .resources/createBooking.resources/examples
+order: 4426910413078572

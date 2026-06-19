@@ -1,10 +1,10 @@
 /** @type {import('jest').Config} */
 export default {
-	projects: ["<rootDir>/backend/jest.config.js"],
+	projects: ["<rootDir>/apps/backend/jest.config.js"],
 	collectCoverageFrom: [
-		"<rootDir>/backend/src/**/*.ts",
-		"!<rootDir>/backend/src/**/*.d.ts",
-		"!<rootDir>/backend/src/migrations/**/*.ts",
-		"!<rootDir>/backend/src/database/seeds/**/*.ts",
+		"<rootDir>/apps/backend/src/**/*.ts",
+		"!<rootDir>/apps/backend/src/**/*.d.ts",
+		"!<rootDir>/apps/backend/src/migrations/**/*.ts",
+		"!<rootDir>/apps/backend/src/database/seeds/**/*.ts",
 	],
 };

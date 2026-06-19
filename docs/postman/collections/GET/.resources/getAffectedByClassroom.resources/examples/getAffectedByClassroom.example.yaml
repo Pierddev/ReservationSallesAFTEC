@@ -1,0 +1,13 @@
+$kind: http-example
+request:
+  url: http://localhost:3000/api/classrooms/:classroomId/equipments
+  method: GET
+  pathVariables:
+    classroomId: "96"
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: json
+    content: ""
+order: 1781694598373
