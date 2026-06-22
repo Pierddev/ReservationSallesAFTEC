@@ -62,7 +62,7 @@ Ce diagramme modélise l'algorithme de réservation d'une salle, incluant les v�
 
 ### Prérequis
 
-- Node.js >= 18
+- Node.js 20+
 - MariaDB
 - Cloner le dépôt : `git clone https://github.com/Pierddev/ReservationSallesAFTEC.git`
 
