@@ -9,6 +9,9 @@
 	},
 	"scripts": {
 		"install:all": "npm install && npm install --prefix apps/backend && npm install --prefix apps/frontend",
+		"lint": "biome check",
+		"format": "biome format --write",
+		"check": "biome ci",
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
 		"test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
 	}
