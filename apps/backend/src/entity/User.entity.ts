@@ -49,7 +49,11 @@ export class User {
 	@Column({ type: "varchar", length: 255 })
 	password!: string;
 
-	@ManyToOne(() => Role, { nullable: false })
+	@ManyToOne(
+		() => Role,
+		(role) => role.users,
+		{ nullable: false },
+	)
 	@JoinColumn({ name: "role_id" })
 	role!: Role;
 }
