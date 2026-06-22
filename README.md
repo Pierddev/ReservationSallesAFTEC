@@ -172,6 +172,9 @@ npm run dev
 | Commande | Description |
 |---|---|
 | `npm run install:all` | Installe toutes les dépendances (root + backend + frontend) |
+| `npm run lint` | Vérifie le code avec Biome (linter + format) |
+| `npm run format` | Formate automatiquement le code avec Biome |
+| `npm run check` | Vérification complète (identique à la CI) |
 | `npm run test` | Lance les tests Jest |
 | `npm run test:cov` | Lance les tests avec couverture |
 
