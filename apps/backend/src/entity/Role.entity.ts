@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User.entity.js";
 
 /**
  * @swagger
@@ -21,4 +22,10 @@ export class Role {
 
 	@Column({ type: "varchar", length: 30, unique: true })
 	name!: string;
+
+	@OneToMany(
+		() => User,
+		(user) => user.role,
+	)
+	users!: User[];
 }
