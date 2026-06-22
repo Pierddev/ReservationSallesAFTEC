@@ -87,8 +87,8 @@ Créez un fichier `.env` à la racine du dossier `apps/backend/` en vous basant 
 PORT=3000
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=res_aftec
-DB_USER=res_app
+DB_NAME=your_db_name
+DB_USER=your_db_user
 DB_PASSWORD=your_db_password
 JWT_SECRET=YOUR_JWT_SECRET
 URL_SITE=http://localhost:5173
@@ -105,14 +105,14 @@ mariadb -u root -p
 Puis exécutez les commandes SQL suivantes pour créer la base de données, l'utilisateur et lui accorder tous les privilèges nécessaires (en cohérence avec votre fichier `.env`) :
 
 ```sql
--- Création de la base de données
-CREATE DATABASE IF NOT EXISTS `res_aftec` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+-- Création de la base de données, remplacez 'your_db_user' par le nom que vous souhaitez utiliser
+CREATE DATABASE IF NOT EXISTS `your_db_name` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
--- Création de l'utilisateur de l'application (changez 'your_db_password' par votre mot de passe, et reportez le dans le .env)
-CREATE USER IF NOT EXISTS 'res_app'@'localhost' IDENTIFIED BY 'your_db_password';
+-- Création de l'utilisateur de l'application (changez 'your_db_password' par votre mot de passe, et reportez le dans le .env), remplacez également 'your_db_user' par le nom que vous souhaitez utiliser
+CREATE USER IF NOT EXISTS 'your_db_user'@'localhost' IDENTIFIED BY 'your_db_password';
 
 -- Attribution des privilèges sur la base de données
-GRANT ALL PRIVILEGES ON `res_aftec`.* TO 'res_app'@'localhost';
+GRANT ALL PRIVILEGES ON `your_db_name`.* TO 'your_db_user'@'localhost';
 
 -- Rechargement des privilèges
 FLUSH PRIVILEGES;
