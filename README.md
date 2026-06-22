@@ -165,6 +165,14 @@ cd apps/frontend/
 npm run dev
 ```
 
+### Utilisateurs de Test
+
+| Rôle | Email | Mot de passe
+|---|---|---|
+| Admin | `daphne.mathieu@gmail.com` | `Password123!`
+| Professeur | `olive97@hotmail.fr` | `Password123!`
+| Etudiant | `elsa_joly58@hotmail.fr` | `Password123!`
+
 ## 5. Commandes Personnalisées
 
 ### Commandes Racine
