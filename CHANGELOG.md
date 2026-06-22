@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.0] - 2026-06-22
+
+### Added
+- **Role-User relationship**: bidirectional `OneToMany` mapping between entities
+
+### Changed
+- Biome configuration simplified with VCS git integration and `lint`/`format`/`check` npm scripts
+- Node.js version requirement updated
+- Hardcoded DB credentials replaced with environment variable placeholders
+
+### Documentation
+- Design maquettes added (zoning, wireframe, graphic charter)
+- Test user credentials documented in README
+
 ## [0.2.0] - 2026-06-19
 
 ### Added
